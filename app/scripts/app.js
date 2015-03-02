@@ -17,7 +17,6 @@ app.config(function($stateProvider, $urlRouterProvider){
     })
     .state('secure', {
       abstract: true,
-      url: 'secured',
       template: '<div ui-view>',
       controller: 'SecureCtrl'
     })
