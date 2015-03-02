@@ -7,18 +7,7 @@
 </head>
 <body>
   <div>
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a ui-sref="home" class="navbar-brand"> UI-Router/Firebase Auth </Link>
-        </div>
-        <ul class="nav navbar-nav pull-right">
-          <li><a ui-sref="home"> Home </a></li>
-          <li><a ui-sref="logout"> Logout </a></li>
-          <li> <a ui-sref="secure.dashboard"> Dashboard </a> </li>
-        </ul>
-      </div>
-    </nav>
+    <menu></menu>
     <div class="container">
       <div class="row">
         <div ui-view></div>
@@ -31,6 +20,7 @@
   <script src="http://cdn.firebase.com/libs/angularfire/0.9.2/angularfire.min.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/login-register/authService.js"></script>
+  <script src="scripts/menu/menu.js"></script>
   <script src="scripts/home/HomeCtrl.js"></script>
   <script src="scripts/login-register/login-logout/LoginCtrl.js"></script>
   <script src="scripts/login-register/registration/RegisterCtrl.js"></script>

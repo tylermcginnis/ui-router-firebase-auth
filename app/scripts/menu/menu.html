@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a ui-sref="home" class="navbar-brand"> UI-Router/Firebase Auth </Link>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+        <li><a ui-sref="home"> Home </a></li>
+        <li> <a ui-sref="secure.dashboard"> Dashboard </a> </li>
+        <li ng-show="user"><a  ui-sref="logout"> Logout </a></li>
+        <li ng-show="!user"><a ui-sref="login"> Login </a></li>
+    </ul>
+  </div>
+</nav>

@@ -2,7 +2,7 @@ var app = angular.module('fbAuth');
 
 app.service('authService', function($firebase, FBURL){
   var ref = new Firebase(FBURL);
-  var cachedUser = null;
+  this.cachedUser = ref.getAuth();
 
   var formatEmailForFirebase =  function(email){
     var key = email.replace('@', '^');
@@ -18,11 +18,11 @@ app.service('authService', function($firebase, FBURL){
   };
 
   this.isLoggedIn = function(){
-    return cachedUser && true || ref.getAuth() || false;
+    return !!ref.getAuth();
   };
 
   this.getUser = function(){
-    return cachedUser || ref.getAuth();
+    return this.cachedUser || ref.getAuth();
   };
 
   this.createUser = function(user, cb) {
@@ -57,7 +57,7 @@ app.service('authService', function($firebase, FBURL){
         cbOnRegister && cbOnRegister(false);
       } else {
         authData.email = userObj.email;
-        cachedUser = authData;
+        this.cachedUser = authData;
         cb(authData);
         cbOnRegister && cbOnRegister(true);
       }
@@ -66,8 +66,7 @@ app.service('authService', function($firebase, FBURL){
 
   this.logout = function(){
     ref.unauth();
-    cachedUser = null;
-    alert('here')
+    this.cachedUser = null;
     return true;
   };
 });
