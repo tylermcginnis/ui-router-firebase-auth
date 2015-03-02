@@ -1,8 +1,8 @@
 var app = angular.module('fbAuth');
 
 app.service('authService', function($firebase, FBURL){
-  var fbRef = $firebase(FBURL);
-  var cachedUser = {};
+  var ref = new Firebase(FBURL);
+  var cachedUser = null;
 
   var formatEmailForFirebase =  function(email){
     var key = email.replace('@', '^');
@@ -14,15 +14,15 @@ app.service('authService', function($firebase, FBURL){
 
   var addNewUserToFB = function(newUser){
     var key = formatEmailForFirebase(newUser.email);
-    fbRef.child('user').child(key).set(newUser);
+    ref.child('user').child(key).set(newUser);
   };
 
   this.isLoggedIn = function(){
-    return cachedUser && true || fbRef.getAuth() || false;
+    return cachedUser && true || ref.getAuth() || false;
   };
 
   this.getUser = function(){
-    return cachedUser || fbRef.getAuth();
+    return cachedUser || ref.getAuth();
   };
 
   this.createUser = function(user, cb) {
@@ -66,6 +66,8 @@ app.service('authService', function($firebase, FBURL){
 
   this.logout = function(){
     ref.unauth();
-    cachedUser = null
+    cachedUser = null;
+    alert('here')
+    return true;
   };
 });
