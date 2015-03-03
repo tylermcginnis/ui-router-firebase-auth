@@ -1,8 +1,9 @@
 var app = angular.module('fbAuth');
 
 app.controller('RegisterCtrl', function($scope, $state, authService){
+  console.log('IN REG CTRL')
   $scope.user = {};
-  $scope.handleSubmit = function(){
+  $scope.register = function(){
     var userObj = {
       email: $scope.user.email,
       password: $scope.user.pw
@@ -16,5 +17,5 @@ app.controller('RegisterCtrl', function($scope, $state, authService){
         $state.go('secure.dashboard');
       }
     });
-  }
+  };
 });

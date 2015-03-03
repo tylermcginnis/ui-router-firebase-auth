@@ -6,8 +6,9 @@
     <ul class="nav navbar-nav pull-right">
         <li><a ui-sref="home"> Home </a></li>
         <li> <a ui-sref="secure.dashboard"> Dashboard </a> </li>
-        <li ng-show="user"><a  ui-sref="logout"> Logout </a></li>
+        <li ng-show="!user"><a ui-sref="register"> Register </a></li>
         <li ng-show="!user"><a ui-sref="login"> Login </a></li>
+        <li ng-show="user"><a  ui-sref="logout"> Logout </a></li>
     </ul>
   </div>
 </nav>
