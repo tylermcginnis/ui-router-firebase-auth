@@ -1,7 +1,6 @@
 var app = angular.module('fbAuth');
 
 app.controller('RegisterCtrl', function($scope, $state, authService){
-  console.log('IN REG CTRL')
   $scope.user = {};
   $scope.register = function(){
     var userObj = {
