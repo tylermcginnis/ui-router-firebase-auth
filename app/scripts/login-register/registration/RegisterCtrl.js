@@ -17,4 +17,12 @@ app.controller('RegisterCtrl', function($scope, $state, authService){
       }
     });
   };
+
+  $scope.registerWithProvider = function(provider){
+    authService.loginWithAuthPopup(provider, function(user){
+      if(user){
+        $state.go('secure.dashboard');
+      }
+    });
+  }
 });

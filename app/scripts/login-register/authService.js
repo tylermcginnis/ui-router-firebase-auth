@@ -4,17 +4,8 @@ app.service('authService', function($firebase, FBURL){
   var ref = new Firebase(FBURL);
   this.cachedUser = ref.getAuth();
 
-  var formatEmailForFirebase =  function(email){
-    var key = email.replace('@', '^');
-    if(key.indexOf('.') !== -1){
-      return key.split('.').join('*');
-    }
-    return key;
-  };
-
   var addNewUserToFB = function(newUser){
-    var key = formatEmailForFirebase(newUser.email);
-    ref.child('user').child(key).set(newUser);
+    ref.child('user').child(newUser.uid).set(newUser);
   };
 
   this.isLoggedIn = function(){
@@ -62,6 +53,18 @@ app.service('authService', function($firebase, FBURL){
         cbOnRegister && cbOnRegister(true);
       }
     }.bind(this));
+  };
+
+  this.loginWithAuthPopup = function(service, cb){
+    ref.authWithOAuthPopup(service, function(err, authData){
+      if(err){
+        console.log('Error on login: ', err.message);
+      } else {
+        addNewUserToFB(authData);
+        this.cachedUser = authData;
+        cb(authData);
+      }
+    }.bind(this))
   };
 
   this.logout = function(){
